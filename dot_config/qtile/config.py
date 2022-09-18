@@ -263,9 +263,9 @@ screens = [
                 #Power Off
                 fc_separator(16),
                 widget.QuickExit(
-                    default_text = "  ",
-                    countdown_format='[{}]',
-                    countdown_start = 7,
+                    default_text = " 襤 ",
+                    countdown_format=' {} ',
+                    countdown_start = 5,
                     fontsize = size_font,
                     padding =0,
                 ),
@@ -274,18 +274,18 @@ screens = [
             background= color_bar,
             border_width=[0, 0, 0, 0],  # Draw top and bottom borders
         ),
-        # bottom=bar.Bar(
-        #     [
-        #         widget.Spacer(
-        #             length=100,
-        #             background = color_bar,
-        #         ),
-        #         fc_icon("Text", color_bar,0),
-        #     ],
-        #     20,
-        #     background = color_bar,
-        #     border_width=[0, 0, 0, 0],
-        # ),
+        bottom=bar.Bar(
+            [
+                widget.Spacer(
+                    length=100,
+                    background = color_bar,
+                ),
+                fc_icon("Text", color_bar,0),
+            ],
+            20,
+            background = color_bar,
+            border_width=[0, 0, 0, 0],
+        ),
     ),
 ]
 
