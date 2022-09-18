@@ -104,13 +104,14 @@ keys = [
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
 
-     #configuracion para las teclas de brillo
+    #configuracion para las teclas de brillo
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
 
     #Capturar pantalla
     Key([mod], "s", lazy.spawn("scrot /home/sebas/Images/'%Y-%m-%d-%T-screen.png'")),
     Key([mod, "shift"], "s", lazy.spawn("scrot -s /home/sebas/Images/'%Y-%m-%d-%T-screenshot.png'")), 
+    # Prueba Chezmoi
 ]
 
 groups = [Group(i) for i in [
