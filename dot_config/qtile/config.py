@@ -111,7 +111,7 @@ keys = [
     #Capturar pantalla
     Key([mod], "s", lazy.spawn("scrot /home/sebas/Images/'%Y-%m-%d-%T-screen.png'")),
     Key([mod, "shift"], "s", lazy.spawn("scrot -s /home/sebas/Images/'%Y-%m-%d-%T-screenshot.png'")), 
-    # Prueba Chezmoi
+    # Prueba Chezmoi 2.0
 ]
 
 groups = [Group(i) for i in [
