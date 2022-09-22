@@ -122,7 +122,7 @@ for i, group in enumerate(groups):
     desktopNumber = str(i+1)
     keys.extend(
         [
-            # mod1 + letter of group = switch to group
+            # mod1 + letter of group = switch to group h
             Key(
                 [mod],
                 desktopNumber,
