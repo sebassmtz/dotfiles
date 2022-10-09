@@ -34,6 +34,15 @@ color_updates = "#bc0000"
 
 #Space for definir functions
 
+
+def longNameParse(text): 
+    for string in ["Brave", "Firefox"]:
+        if string in text:
+            text = string
+        else:
+            text = text
+    return text
+
 #Funcion de separador
 def fc_separator(size):
     return widget.Sep(
@@ -41,6 +50,12 @@ def fc_separator(size):
         padding = size,
         foreground = fg_color,
         background = bg_color,
+    )
+
+def fc_spacer(size):
+    return widget.Spacer(
+        length = size,
+        background = color_bar,
     )
 
 #Funcion para escribir texto o un icono
@@ -89,6 +104,7 @@ keys = [
 
     # Tecla para lanzar el menu de rofi
     Key([mod], "m",lazy.spawn("rofi -show drun"), desc="Open menu"),
+    Key([mod, "shift"], "m", lazy.spawn("rofi -show window")), 
     #Tecla para abrir el navegador Brave
     Key([mod], "b",lazy.spawn("brave"), desc="Open brave"),
 
@@ -104,14 +120,13 @@ keys = [
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
 
-    #configuracion para las teclas de brillo
+     #configuracion para las teclas de brillo
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
 
     #Capturar pantalla
     Key([mod], "s", lazy.spawn("scrot /home/sebas/Images/'%Y-%m-%d-%T-screen.png'")),
     Key([mod, "shift"], "s", lazy.spawn("scrot -s /home/sebas/Images/'%Y-%m-%d-%T-screenshot.png'")), 
-    # Prueba Chezmoi 2.0
 ]
 
 groups = [Group(i) for i in [
@@ -122,7 +137,7 @@ for i, group in enumerate(groups):
     desktopNumber = str(i+1)
     keys.extend(
         [
-            # mod1 + letter of group = switch to group h
+            # mod1 + letter of group = switch to group
             Key(
                 [mod],
                 desktopNumber,
@@ -168,6 +183,26 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+                fc_separator(16),
+                widget.Prompt(),
+                #Thermal and Memory (Group 1)
+                fc_icon("  ",color_bar,-3), # nf-fa-thermometer_2
+                widget.ThermalSensor(
+                    background = color_bar,
+                    foreground = fg_color,
+                    fontsize = size_font,
+                    threshold = 70,
+                    #tag_sensor = "temp1",
+                    fmt = ' T: {} '
+                ),
+                fc_icon("   ",color_bar,-3), # nf-fa-save
+                widget.Memory(
+                    background = color_bar,
+                    foreground = "#ffffff",
+                    fontsize = size_font,
+                ),
+                fc_separator(16),
+                fc_spacer(50),
                 #Muestra los menus
                 widget.GroupBox(
                     active=active_color,
@@ -189,51 +224,6 @@ screens = [
                     urgent_border = urgent_color,
                 ),
                 fc_separator(16),
-                widget.WindowName(
-                    background = bg_color,
-                    foreground = "#ffffff",
-                ),
-                widget.Prompt(),
-                #Thermal and Memory (Group 1)
-                fc_icon("  ",color_bar,-3), # nf-fa-thermometer_2
-                widget.ThermalSensor(
-                    background = color_bar,
-                    foreground = fg_color,
-                    fontsize = size_font,
-                    threshold = 70,
-                    #tag_sensor = "temp1",
-                    fmt = ' T: {} '
-                ),
-                fc_icon("   ",color_bar,-3), # nf-fa-save
-                widget.Memory(
-                    background = color_bar,
-                    foreground = "#ffffff",
-                    fontsize = size_font,
-                ),
-                fc_separator(16),
-
-                #Updates and Network  (Group 2)
-                fc_icon("  ",color_bar,-3),
-                widget.CheckUpdates(
-                    background= color_bar,
-                    colour_have_updates= color_updates,
-                    colour_no_updates = fg_color,
-                    no_update_string = '0',
-                    display_format = '{updates}',
-                    update_interval = 1800,
-                    distro = 'Arch_checkupdates',
-                    ontsize = size_font,
-                ),
-                widget.Net(
-                    foreground = fg_color,
-                    background = color_bar,
-                    fontsize = size_font,
-                    format = '  {down}   {up}',
-                    prefix = 'k',
-                    #interface = red_device,
-                    use_bits = 'true',
-                ),
-                fc_separator(16),
                 #Volume
                 fc_icon(" 墳 ", color_bar,-3),# nf-fa-volume_up
                 widget.PulseVolume(
@@ -241,18 +231,7 @@ screens = [
                     update_interval = 0.05,
                     fontsize = size_font,
                 ),
-
-                #Icons Systray
-                widget.Systray(
-                    icon_size = size_icon,
-                    background = bg_color,
-                ),
                 fc_separator(16),
-                #Layaout (Group 4)
-                widget.CurrentLayoutIcon(
-                    background = color_bar,
-                    scale = 0.5,
-                ),
                 fc_separator(16),
                 #Date (Group 3)
                 widget.Clock(
@@ -269,6 +248,7 @@ screens = [
                     countdown_start = 5,
                     fontsize = size_font,
                     padding =0,
+
                 ),
             ],
             size_bar,
@@ -277,13 +257,62 @@ screens = [
         ),
         bottom=bar.Bar(
             [
-                widget.Spacer(
-                    length=100,
+                #Layaout (Group 4)
+                widget.CurrentLayoutIcon(
                     background = color_bar,
+                    scale = 0.75,
+                    padding= 1,
                 ),
-                fc_icon("Text", color_bar,0),
+                fc_spacer(1),
+                #Network  (Group 2)
+                widget.Net(
+                    foreground = fg_color,
+                    background = color_bar,
+                    fontsize = size_font,
+                    format = '  {down}   {up}',
+                    prefix = 'k',
+                    #interface = red_device,
+                    use_bits = 'true',
+                    padding = 3,
+                ),
+
+                fc_spacer(150),
+                widget.WindowName(
+                    #parse_text=longNameParse,
+                    background = bg_color,
+                    foreground = "#ffffff",
+                    format = '{state}{name}',
+                    font = default_font,
+                    
+                ),
+                fc_spacer(8),
+                widget.CPU(
+                    format = ' {freq_current}GHz  {load_percent}%',  # Cambiar estos iconos
+                    update_interval = 0.9,
+                    padding = 3,
+                ),
+                fc_spacer(8),
+                # fc_icon("  ",color_bar,-3),
+                # widget.CheckUpdates(
+                #     background= color_bar,
+                #     colour_have_updates= color_updates,
+                #     colour_no_updates = fg_color,
+                #     no_update_string = '0',
+                #     display_format = '{updates}',
+                #     update_interval = 1800,
+                #     distro = 'Arch_checkupdates',
+                #     ontsize = size_font,
+                # ),
+
+                #Icons Systray
+                widget.Systray(
+                    icon_size = size_icon,
+                    background = bg_color,
+                ),
+                fc_spacer(2),
+                
             ],
-            20,
+            18,
             background = color_bar,
             border_width=[0, 0, 0, 0],
         ),
