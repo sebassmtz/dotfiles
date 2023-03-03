@@ -13,7 +13,7 @@ mod = "mod4"
 terminal = guess_terminal()
 
 #Fonts
-default_font = "Roboto Mono"
+default_font = "Roboto Mono" 
 #red_device = "wslan0" # ip address
 
 #Sizes
