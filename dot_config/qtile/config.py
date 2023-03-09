@@ -13,7 +13,7 @@ mod = "mod4"
 terminal = guess_terminal()
 
 #Fonts
-default_font = "Roboto Mono" 
+default_font = "Roboto Mono"
 #red_device = "wslan0" # ip address
 
 #Sizes
@@ -120,7 +120,7 @@ keys = [
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
 
-     #configuracion para las teclas de brillo
+    #configuracion para las teclas de brillo
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
 
@@ -130,7 +130,7 @@ keys = [
 ]
 
 groups = [Group(i) for i in [
-    "  ","  ","  ","  ","  ","  ",
+    "  ","  ","  ","  ","  ","  "," 󰙯 ","  "
 ]]
 
 for i, group in enumerate(groups):
@@ -241,15 +241,15 @@ screens = [
                     #fontshadow = color_group3,
                 ),
                 #Power Off
-                fc_separator(16),
-                widget.QuickExit(
-                    default_text = " 襤 ",
-                    countdown_format=' {} ',
-                    countdown_start = 5,
-                    fontsize = size_font,
-                    padding =0,
+                # fc_separator(16),
+                # widget.QuickExit(
+                #     default_text = " 襤 ",
+                #     countdown_format=' {} ',
+                #     countdown_start = 5,
+                #     fontsize = size_font,
+                #     padding =0,
 
-                ),
+                # ),
             ],
             size_bar,
             background= color_bar,
