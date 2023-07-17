@@ -1,0 +1,7 @@
+# Plugins
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting
+
+# oh-my-zsh
+ohmyzsh/ohmyzsh path:plugins/docker
+ohmyzsh/ohmyzsh path:plugins/git
