@@ -30,7 +30,8 @@ launch_bar() {
 
 	# Launch the bar
 	for mon in $(polybar --list-monitors | cut -d":" -f1); do
-		MONITOR=$mon polybar -q main -c "$DIR"/config.ini &
+		MONITOR=$mon polybar -q top -c "$DIR"/config.ini &
+		MONITOR=$mon polybar -q bottom -c "$DIR"/config.ini &
 	done
 }
 
