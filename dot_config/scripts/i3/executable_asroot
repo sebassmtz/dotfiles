@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# i3 directory
+DIR="$HOME/.config/scripts"
+
+# rofi sudo askpass helper
+export SUDO_ASKPASS="$DIR"/rofi/askpass
+
+# execute the application
+sudo -A $1

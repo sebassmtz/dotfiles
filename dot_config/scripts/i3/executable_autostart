@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+
+# i3 dir
+idir="$HOME/.config/scripts/i3"
+
+# # Kill already running process
+# _ps=(xsettingsd ksuperkey)
+# for _prs in "${_ps[@]}"; do
+# 	if [[ `pidof ${_prs}` ]]; then
+# 		killall -9 ${_prs}
+# 	fi
+# done
+
+# # Lauch xsettingsd daemon
+# xsettingsd --config="$idir"/xsettingsd &
+
+# # polkit agent
+# if [[ ! `pidof xfce-polkit` ]]; then
+# 	/usr/lib/xfce-polkit/xfce-polkit &
+# fi
+
+# # Enable power management
+# xfce4-power-manager &
+
+# Enable Super Keys For Menu
+ksuperkey -e 'Super_L=Alt_L|F1' &
+ksuperkey -e 'Super_R=Alt_L|F1' &
+
+# Fix cursor
+xsetroot -cursor_name left_ptr
+
+# Restore wallpaper
+# hsetroot -root -cover "$idir"/theme/wallpaper
+
+# Lauch notification daemon
+"$idir"/e_dunst
+
+# Lauch polybar
+"$idir"/e_bar
+
+# Lauch compositor
+# "$idir"/e_comp
+
+# Start mpd
+# exec mpd &

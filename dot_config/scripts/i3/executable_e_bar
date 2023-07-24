@@ -1,0 +1,5 @@
+# i3 directory
+DIR="$HOME/.config"
+
+# launch polybar
+bash "$DIR"/polybar.sh

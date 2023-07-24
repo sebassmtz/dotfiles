@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+
+# i3 directory
+DIR="$HOME/.config/dunst"
+
+# Launch dunst daemon
+if [[ `pidof dunst` ]]; then
+	pkill dunst
+fi
+
+dunst -config "$DIR"/dunstrc &
