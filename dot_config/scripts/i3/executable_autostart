@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
-
 # i3 dir
-idir="$HOME/.config/scripts/i3"
+idir="$HOME/.config"
 
-# # Kill already running process
-# _ps=(xsettingsd ksuperkey)
-# for _prs in "${_ps[@]}"; do
-# 	if [[ `pidof ${_prs}` ]]; then
-# 		killall -9 ${_prs}
-# 	fi
-# done
+# Kill already running process
+_ps=(xsettingsd ksuperkey)
+for _prs in "${_ps[@]}"; do
+	if [[ `pidof ${_prs}` ]]; then
+		killall -9 ${_prs}
+	fi
+done
 
-# # Lauch xsettingsd daemon
-# xsettingsd --config="$idir"/xsettingsd &
+# Lauch xsettingsd daemon
+
+xsettingsd --config="$idir"/xsettingsd/xsettingsd.conf &
 
 # # polkit agent
 # if [[ ! `pidof xfce-polkit` ]]; then
@@ -21,7 +21,7 @@ idir="$HOME/.config/scripts/i3"
 # fi
 
 # # Enable power management
-# xfce4-power-manager &
+xfce4-power-manager &
 
 # Enable Super Keys For Menu
 ksuperkey -e 'Super_L=Alt_L|F1' &
@@ -31,16 +31,16 @@ ksuperkey -e 'Super_R=Alt_L|F1' &
 xsetroot -cursor_name left_ptr
 
 # Restore wallpaper
-# hsetroot -root -cover "$idir"/theme/wallpaper
+hsetroot -root -cover "$idir"/theme/wallpaper
 
 # Lauch notification daemon
-"$idir"/e_dunst
+"$idir"/scripts/i3/e_dunst
 
 # Lauch polybar
-"$idir"/e_bar
+"$idir"/scripts/i3/e_bar
 
 # Lauch compositor
-# "$idir"/e_comp
+"$idir"/scripts/i3/e_comp
 
 # Start mpd
 # exec mpd &
