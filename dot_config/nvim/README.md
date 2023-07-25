@@ -1,4 +1,3 @@
-Sure! Here's an improved version of the README.md for configuring Neovim:
 
 # Neovim Configuration
 
