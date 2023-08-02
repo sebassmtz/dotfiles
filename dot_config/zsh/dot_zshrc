@@ -2,6 +2,10 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # ZSH_THEME="agnoster"
 
+# Export Browser
+
+export BROWSER=/usr/bin/google-chrome-stable
+
 source $ZSH/oh-my-zsh.sh
 
 # ZSH History
@@ -28,8 +32,7 @@ export VISUAL='nvim'
 alias ls='lsd'
 alias ll='ls -la'
 alias cat='bat'
-
-#Alias for Docker
+# alias c='clear'
 
 alias dpa='docker ps -a'
 alias dp='docker ps'

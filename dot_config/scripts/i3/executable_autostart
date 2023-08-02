@@ -31,7 +31,7 @@ ksuperkey -e 'Super_R=Alt_L|F1' &
 xsetroot -cursor_name left_ptr
 
 # Restore wallpaper
-hsetroot -root -cover "$idir"/theme/wallpaper
+hsetroot -root -cover "$idir"/theme/wallpaper2
 
 # Lauch notification daemon
 "$idir"/scripts/i3/e_dunst
