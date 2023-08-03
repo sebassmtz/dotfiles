@@ -1,3 +1,4 @@
-preview/	 # ignore screenshots
+preview/	 # ignore screenshots and folder preview
 README.md	 # ignore README.md 
 *.txt 		 # ignore *.txt in the target directory
+LICENSE		 # Ignore LICENSE in the target directory
